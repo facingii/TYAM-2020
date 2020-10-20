@@ -10,8 +10,10 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -25,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -35,8 +38,6 @@ public class MainActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView (R.layout.activity_main);
-
-
 
         Toolbar toolbar = findViewById (R.id.toolbar);
         setActionBar (Objects.requireNonNull (toolbar));
@@ -67,7 +68,19 @@ public class MainActivity extends Activity {
 
     private void loadImages () {
         String [] columns = { MediaStore.Images.Media._ID, MediaStore.Images.Media.DISPLAY_NAME };
-        String order = MediaStore.Images.Media.DEFAULT_SORT_ORDER;
+
+        String order = "";
+        String selection = "";
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            order = MediaStore.Images.ImageColumns.DATE_TAKEN + " DESC";
+            selection = MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME + " like ?";
+        } else {
+            order = MediaStore.Images.ImageColumns.DATE_ADDED + " DESC";
+            selection = MediaStore.Images.Media.DATA + " like ?";
+        }
+
+        String [] selectionArgs = {"%DCIM%"};
 
         Cursor cursor = getContentResolver ().query (
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
@@ -77,7 +90,7 @@ public class MainActivity extends Activity {
                 order
         );
 
-        DatabaseUtils.dumpCursor (cursor);
+        //DatabaseUtils.dumpCursor (cursor);
         if (cursor == null) return;
 
         LinkedList<Uri> imageUris = new LinkedList<> ();

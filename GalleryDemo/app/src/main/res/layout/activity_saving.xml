@@ -16,8 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:padding="5dp"
-        android:src="@drawable/a3_26" />
+        android:padding="5dp" />
 
     <Button
         android:id="@+id/btnSave"
@@ -25,6 +24,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="5dp"
-        android:text="Save" />
+        android:text="Tomar Foto" />
 
 </LinearLayout>
