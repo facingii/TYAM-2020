@@ -4,5 +4,7 @@
 
     <item android:id="@+id/mnuOpen" android:title="Open" app:showAsAction="ifRoom" />
     <item android:id="@+id/mnuSepia" android:title="Sepia" app:showAsAction="ifRoom" />
+    <item android:id="@+id/mnuGrayScale" android:title="Gray Scale" app:showAsAction="ifRoom" />
+    <item android:id="@+id/mnuNegative" android:title="Negative" app:showAsAction="ifRoom" />
 
 </menu>

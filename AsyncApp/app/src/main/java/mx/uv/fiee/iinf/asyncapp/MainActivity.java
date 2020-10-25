@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -21,6 +22,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class MainActivity extends Activity {
     public static final int FILE_CHOOSER_REQUEST_CODE = 4001;
@@ -52,6 +57,10 @@ public class MainActivity extends Activity {
             openDialog ();
         } else if (id == R.id.mnuSepia) {
             convertSepia ();
+        } else if (id == R.id.mnuGrayScale) {
+            convertMonochrome ();
+        } else if (id == R.id.mnuNegative) {
+            convertNegative ();
         }
 
         return super.onOptionsItemSelected(item);
@@ -67,9 +76,87 @@ public class MainActivity extends Activity {
     }
 
     private void convertSepia () {
+        final Bitmap bitmap = getBitmapFromDrawable (ivCanvas.getDrawable ());
+
+        ExecutorService executorService = Executors.newFixedThreadPool (1);
+        Future<Bitmap> bitmapFuture = executorService.submit (new SephiaCallable (bitmap));
+        executorService.shutdown ();
+
+        // do other work
+
+//        if (bitmapFuture.isDone ()) {
+//            try {
+//                ivCanvas.setImageBitmap (bitmapFuture.get ()); // .get puede bloquear la UI
+//            } catch (ExecutionException | InterruptedException ex) {
+//                ex.printStackTrace ();
+//            }
+//        }
+
+        // se obtiene la referencia al objeto handler del hilo principal, lo que permite enviar
+        // mensajes y tareas a la cola de mensaje de dicho hilo.
+        Handler myHandler = getWindow().getDecorView().getHandler ();
+
+        // para verificar el estado de la tarea, se utiliza un hilo adicional de modo que no
+        // se bloquee la interfaz de usuario.
+        new Thread (() -> {
+            while (true) {
+                Log.d ("TYAM", "Checking Future task's finish...");
+                if (bitmapFuture.isDone ()) {
+                    // se utiliza la función post del handler obtenido para colocar un objeto runnable
+                    // que será ejecutado dentro del loop del hilo principal, donde se tiene
+                    // acceso a los controles de la interfaz de usuario.
+                    myHandler.post (() -> {
+                        try {
+                            Bitmap bmp = bitmapFuture.get ();
+                            ivCanvas.setImageBitmap (bmp);
+                        } catch (ExecutionException | InterruptedException ex) {
+                            ex.printStackTrace ();
+                        }
+                    });
+
+                    break;
+                }
+            }
+        }).start ();
+    }
+
+    private void convertMonochrome () {
         Bitmap bitmap = getBitmapFromDrawable (ivCanvas.getDrawable ());
-        bitmap  = toSephia (bitmap);
-        ivCanvas.setImageBitmap (bitmap);
+
+        Thread thread = new Thread (() -> {
+            Bitmap bmp = toGrayscale (bitmap);
+
+            this.runOnUiThread (() -> {
+                ivCanvas.setImageBitmap (bmp);
+            });
+        });
+
+        thread.start ();
+    }
+
+    public Bitmap toGrayscale (Bitmap src) {
+        float [] matrix = new float [] {
+                0.3f, 0.59f, 0.11f, 0, 0,
+                0.3f, 0.59f, 0.11f, 0, 0,
+                0.3f, 0.59f, 0.11f, 0, 0,
+                0, 0, 0, 1, 0, };
+
+        Bitmap dest = Bitmap.createBitmap (
+                src.getWidth (),
+                src.getHeight (),
+                src.getConfig ());
+
+        Canvas canvas = new Canvas (dest);
+        Paint paint = new Paint ();
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter (matrix);
+        paint.setColorFilter (filter);
+        canvas.drawBitmap (src, 0, 0, paint);
+
+        return dest;
+    }
+
+    private void convertNegative () {
+       //AsyncTask
     }
 
     /**
@@ -98,52 +185,6 @@ public class MainActivity extends Activity {
         return bitmap;
     }
 
-
-    public Bitmap toSephia (Bitmap bmpOriginal)
-    {
-        int width, height, r,g, b, c, gry, depth = 20;
-        height = bmpOriginal.getHeight ();
-        width = bmpOriginal.getWidth ();
-
-        Bitmap bmpSephia = Bitmap.createBitmap (width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas (bmpSephia);
-
-        Paint paint = new Paint();
-
-        ColorMatrix cm = new ColorMatrix ();
-        cm.setScale (.3f, .3f, .3f, 1.0f);
-        ColorMatrixColorFilter f = new ColorMatrixColorFilter (cm);
-
-        paint.setColorFilter (f);
-
-        canvas.drawBitmap (bmpOriginal, 0, 0, paint);
-        for(int x=0; x < width; x++) {
-            for(int y=0; y < height; y++) {
-                c = bmpOriginal.getPixel(x, y);
-
-                r = Color.red (c);
-                g = Color.green (c);
-                b = Color.blue (c);
-
-                gry = (r + g + b) / 3;
-                r = g = b = gry;
-
-                r = r + (depth * 2);
-                g = g + depth;
-
-                if (r > 255) {
-                    r = 255;
-                }
-                if (g > 255) {
-                    g = 255;
-                }
-                bmpSephia.setPixel (x, y, Color.rgb (r, g, b));
-            }
-        }
-
-        return bmpSephia;
-    }
-
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
         super.onActivityResult (requestCode, resultCode, data);
@@ -154,3 +195,19 @@ public class MainActivity extends Activity {
         }
     }
 }
+
+//    float[] colorMatrix_Negative = {
+//            -1.0f, 0, 0, 0, 255, //red
+//            0, -1.0f, 0, 0, 255, //green
+//            0, 0, -1.0f, 0, 255, //blue
+//            0, 0, 0, 1.0f, 0 //alpha
+//    };
+//
+//    Paint MyPaint_Normal = new Paint();
+//    Paint MyPaint_Negative = new Paint();
+//    ColorFilter colorFilter_Negative = new ColorMatrixColorFilter(colorMatrix_Negative);
+//    MyPaint_Negative.setColorFilter(colorFilter_Negative);
+//
+//          Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+//          canvas.drawBitmap(myBitmap, 400, 100, MyPaint_Normal);
+//          canvas.drawBitmap(myBitmap, 500, 100, MyPaint_Negative);
