@@ -1,4 +1,4 @@
-# Tecnologías y Aplicaciones Móviles Curso Septimebre 2020 - Enero 2021 
+# Tecnologías y Aplicaciones Móviles Curso Septiembre 2020 - Enero 2021 
 
 **Entornos de Desarrollo Multiplataforma**
 * [Maps with Flutter](https://github.com/facingii/TYAM-2020/tree/master/FluMapsPerKat)
