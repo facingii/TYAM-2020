@@ -156,7 +156,9 @@ public class MainActivity extends Activity {
     }
 
     private void convertNegative () {
-       //AsyncTask
+        Bitmap bitmap = getBitmapFromDrawable (ivCanvas.getDrawable ());
+        NegativeFilterAsyncTask task = new NegativeFilterAsyncTask (ivCanvas);
+        task.execute (bitmap);
     }
 
     /**
