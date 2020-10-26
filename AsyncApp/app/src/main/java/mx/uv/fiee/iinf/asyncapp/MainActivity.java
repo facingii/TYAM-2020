@@ -198,18 +198,3 @@ public class MainActivity extends Activity {
     }
 }
 
-//    float[] colorMatrix_Negative = {
-//            -1.0f, 0, 0, 0, 255, //red
-//            0, -1.0f, 0, 0, 255, //green
-//            0, 0, -1.0f, 0, 255, //blue
-//            0, 0, 0, 1.0f, 0 //alpha
-//    };
-//
-//    Paint MyPaint_Normal = new Paint();
-//    Paint MyPaint_Negative = new Paint();
-//    ColorFilter colorFilter_Negative = new ColorMatrixColorFilter(colorMatrix_Negative);
-//    MyPaint_Negative.setColorFilter(colorFilter_Negative);
-//
-//          Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-//          canvas.drawBitmap(myBitmap, 400, 100, MyPaint_Normal);
-//          canvas.drawBitmap(myBitmap, 500, 100, MyPaint_Negative);
