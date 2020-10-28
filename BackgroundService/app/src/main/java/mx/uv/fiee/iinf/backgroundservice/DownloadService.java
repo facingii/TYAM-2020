@@ -35,7 +35,7 @@ public class DownloadService extends IntentService {
         try {
             URL url = new URL (urlString);
             URLConnection urlConnection = url.openConnection();
-            HttpURLConnection connection = null;
+            HttpURLConnection connection;
 
             if (urlString.startsWith (HTTPS_TAG)) {
                 connection = (HttpsURLConnection) urlConnection;

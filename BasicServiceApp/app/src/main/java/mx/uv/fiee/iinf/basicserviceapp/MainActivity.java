@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
         setContentView (R.layout.activity_main);
 
         findViewById(R.id.startService).setOnClickListener (view -> {
-            intent = new Intent(getBaseContext (), MyOsomService.class);
+            intent = new Intent (getBaseContext (), MyOsomService.class);
             startService (intent);
         });
 
