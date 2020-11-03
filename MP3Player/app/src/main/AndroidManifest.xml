@@ -3,6 +3,7 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +21,8 @@
         </activity>
 
         <activity android:name=".DetailsActivity" android:screenOrientation="sensor"/>
+
+        <service android:name=".PlayerService" />
 
     </application>
 
