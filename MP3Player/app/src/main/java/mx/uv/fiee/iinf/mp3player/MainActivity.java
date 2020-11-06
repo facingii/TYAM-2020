@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
 
         // SELECT MediaStore.Audio.Artists.ARTIST, MediaStore.Audio.Media.ALBUM
         // FROM MediaStore.Audio.Media.EXTERNAL_CONTENT_URI ORDER BY MediaStore.Audio.Media.DEFAULT_SORT_ORDER;
-        Cursor cursor = getBaseContext().getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, columns, null, null, order);
+        Cursor cursor = getBaseContext().getContentResolver().query(MediaStore.Audio.Media.INTERNAL_CONTENT_URI, columns, null, null, order);
         if (cursor == null) return;
 
         LinkedList<AudioModel> artists = new LinkedList<>();
