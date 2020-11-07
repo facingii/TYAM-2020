@@ -25,15 +25,22 @@ public class MainActivity extends Activity implements OnPlanetSelectedListener {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed ();
+        getFragmentManager().popBackStack ("PERLA", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+    @Override
     public void itemSelected (String text, int resourceId) {
         DetailsFragments detailsFragments = DetailsFragments.instance (text, resourceId);
 
         FragmentManager manager =  getFragmentManager ();
         FragmentTransaction transaction =  manager.beginTransaction ();
+        transaction.addToBackStack ("PERLA");
 
         View detailsContainer = findViewById (R.id.detailsContainer);
         if (detailsContainer == null) {
-            transaction.add (R.id.mainContainer, detailsFragments);
+            transaction.replace (R.id.mainContainer, detailsFragments);
         } else {
             transaction.add (R.id.detailsContainer, detailsFragments);
         }
