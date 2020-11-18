@@ -24,3 +24,13 @@
 
 **Fragmentos**
 * [UI Modular](https://github.com/facingii/TYAM-2020/tree/master/UIModularApp)
+
+**Consumiendo Servicios Basados en XML**
+* [RSSFeedFetcher](https://github.com/facingii/TYAM-2020/tree/master/RSSFeedsFetcher)
+* [RSSFeedFetcher2](https://github.com/facingii/TYAM-2020/tree/master/RSSFeedsFetcher2)
+* [RSSFeedsFetcher3](https://github.com/facingii/TYAM-2020/tree/master/RSSFeedsFetcher3)
+
+**Consumiendo Servicios Basados en JSON**
+* [CalidadDelAire](https://github.com/facingii/TYAM-2020/tree/master/CalidadDelAire)
+* [CalidadDelAire2](https://github.com/facingii/TYAM-2020/tree/master/CalidadDelAire2)
+* [LastFMTracker](https://github.com/facingii/TYAM-2020/tree/master/LastFMTracker)
