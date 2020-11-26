@@ -2,6 +2,9 @@ package mx.uv.fiee.iinf.tyam.API;
 
 import mx.uv.fiee.iinf.tyam.BuildConfig;
 
+/**
+ * Constantes de la aplicación.
+ */
 public class ApiContants {
     public static final String TOP_ARTISTS_URL = "/2.0/?method=chart.gettopartists";
     public static final String TOP_TRACKS_URL = "/2.0/?method=chart.getTopTracks";
