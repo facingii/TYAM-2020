@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/strut"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/tvFahrenheit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/strut"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="50dp"
+            android:text="Fahrenheit" />
+
+        <EditText
+            android:id="@+id/edtFahrenheit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/strut"
+            android:layout_below="@id/tvFahrenheit"
+            android:layout_marginEnd="100dp"
+            android:text="0"/>
+
+        <TextView
+            android:id="@+id/tvCelsius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:layout_toEndOf="@id/strut"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="50dp"
+            android:text="Celsius" />
+
+        <EditText
+            android:id="@+id/edtCelsius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/strut"
+            android:layout_below="@id/tvCelsius"
+            android:layout_marginStart="80dp"
+            android:text="0"/>
+
+
+        <Button
+            android:id="@+id/btnConvert"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:text="Convert" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
