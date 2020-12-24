@@ -40,6 +40,7 @@
 * [FBDatabaseDemo](https://github.com/facingii/TYAM-2020/tree/master/FBDatabaseDemo)
 * [FBStorage](https://github.com/facingii/TYAM-2020/tree/master/FBStorage)
 * [FBMessaging](https://github.com/facingii/TYAM-2020/tree/master/FBMessaging)
+* [UserInfo](https://github.com/facingii/TYAM-2020/tree/master/UserInfoApp)
 
 **Testing**
 * [EspressoRecyclerView](https://github.com/facingii/TYAM-2020/tree/master/EspressoRecyclerView)
