@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivProfilePicListItem"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tvNameListItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:padding="3dp"
+        android:layout_toEndOf="@id/ivProfilePicListItem"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/ivProfilePicListItem"
+        android:layout_below="@id/tvNameListItem">
+
+        <View
+            android:id="@+id/strut"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tvAgeListItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/strut"
+            android:layout_alignParentStart="true"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault" />
+
+        <TextView
+            android:id="@+id/tvTelephoneListItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/strut"
+            android:layout_alignParentEnd="true"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault" />
+
+        <TextView
+            android:id="@+id/tvAddressListItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTelephoneListItem"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

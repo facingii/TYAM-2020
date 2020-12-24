@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:background="@color/design_default_color_primary"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
+            android:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+            android:titleTextColor="#fff"  />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:layout_below="@id/toolbar"
+            android:layout_centerHorizontal="true"
+            android:text="Registro de usuario" />
+
+        <TextView
+            android:id="@+id/tvProfilePic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/tvTitle"
+            android:layout_alignParentStart="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Foto" />
+
+
+        <ImageView
+            android:id="@+id/ivProfilePic"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/tvTitle"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <Button
+            android:id="@+id/btnChangePic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:layout_alignTop="@id/ivProfilePic"
+            android:layout_alignParentEnd="true"
+            android:text="Cambiar" />
+
+        <View
+            android:id="@+id/strut"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivProfilePic"
+            android:layout_alignEnd="@id/strut"
+            android:layout_alignBaseline="@id/edtName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Nombre" />
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/strut"
+            android:layout_below="@id/ivProfilePic"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tvlastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName"
+            android:layout_alignEnd="@id/strut"
+            android:layout_alignBaseline="@id/edtlastName"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Apellidos" />
+
+        <EditText
+            android:id="@+id/edtlastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/strut"
+            android:layout_below="@id/edtName"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvlastName"
+            android:layout_alignEnd="@id/strut"
+            android:layout_alignBaseline="@id/edtAddress"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Dirección" />
+
+        <EditText
+            android:id="@+id/edtAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/strut"
+            android:layout_below="@id/edtlastName"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tvAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvAddress"
+            android:layout_alignEnd="@id/strut"
+            android:layout_alignBaseline="@id/edtAge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Edad" />
+
+        <EditText
+            android:id="@+id/edtAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/strut"
+            android:layout_below="@id/edtAddress"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tvTelephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvAge"
+            android:layout_alignEnd="@id/strut"
+            android:layout_alignBaseline="@id/edtTelephone"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Teléfono" />
+
+        <EditText
+            android:id="@+id/edtTelephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/strut"
+            android:layout_below="@id/edtAge"
+            android:layout_marginTop="5dp" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtTelephone"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="30dp"
+            android:text="Guardar" />
+
+    </RelativeLayout>
+</ScrollView>
