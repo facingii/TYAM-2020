@@ -43,3 +43,14 @@
 
 **Testing**
 * [EspressoRecyclerView](https://github.com/facingii/TYAM-2020/tree/master/EspressoRecyclerView)
+* [EspressoUITest](https://github.com/facingii/TYAM-2020/tree/master/EspressoUITest)
+* [UnitTestBasics](https://github.com/facingii/TYAM-2020/tree/master/UnitTestBasics)
+* [PruebasUnitarias](https://github.com/facingii/TYAM-2020/tree/master/PruebasUnitariasApp)
+
+**Datos Locales**
+* [SQLite](https://github.com/facingii/TYAM-2020/tree/master/SQLiteDemo)
+* [RoomLibrary](https://github.com/facingii/TYAM-2020/tree/master/RoomLibraryDemo)
+
+**Animando vistas**
+* [AnimView](https://github.com/facingii/TYAM-2020/tree/master/AnimViewApp)
+
