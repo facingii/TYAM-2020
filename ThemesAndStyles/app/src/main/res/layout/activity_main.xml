@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/TextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="200dp"
+        android:textSize="15sp"
+        style="@style/Widget.AppCompat.TextView"
+        android:text="Prueba Estilos"/>
+
+    <TextView
+        android:id="@+id/TextView2"
+        style="@style/TextviewStyle"
+        android:text="Welcome to Tutlane"/>
+
+    <Button
+        android:id="@+id/btnShow"
+        android:text="Click on Button"
+        style="@style/ButtonStyle" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnShow1"
+        android:text="Click on Other Button"
+        style="@style/ButtonStyle" />
+</LinearLayout>
